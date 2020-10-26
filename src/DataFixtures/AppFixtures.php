@@ -60,13 +60,10 @@ class AppFixtures extends Fixture
                     ;
     
                     $chrono++;
-    
                     $manager->persist($invoice);
                 }
             }
-
         }
-
 
         $manager->flush();
     }
