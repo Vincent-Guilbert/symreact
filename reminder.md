@@ -69,7 +69,7 @@ http://localhost:8000/api/customers?pagination=true&itemsPerPage=50
 
 ***
 
-## Filters
+## Filtres
 
 ### *SearchFilter*
 
@@ -128,3 +128,6 @@ Les filtre sont cumulables:
  * @ApiFilter(SearchFilter::class, properties={"firstName":partial, "lastName":"partial"})
  */
 ```
+***
+
+## Groupes de sérialization

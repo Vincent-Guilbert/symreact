@@ -7,9 +7,12 @@ use App\Repository\CustomerRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
@@ -33,18 +36,30 @@ class Customer
     /**
      * @Groups({"customers_read", "invoices_read"})
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le prénom est obligatoire.")
+     * @Assert\Length(
+     *  min=2, minMessage="Le prénom doit faire entre 2 et 50 caractères.",
+     *  max=50, maxMessage="Le prénom doit faire entre 2 et 50 caractères."
+     * )
      */
     private $firstName;
 
     /**
      * @Groups({"customers_read", "invoices_read"})
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le nom est obligatoire.")
+     * @Assert\Length(
+     *  min=2, minMessage="Le nom doit faire entre 2 et 50 caractères.",
+     *  max=50, maxMessage="Le nom doit faire entre 2 et 50 caractères."
+     * )
      */
     private $lastName;
 
     /**
      * @Groups({"customers_read", "invoices_read"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="L'adresse email est obligatoire.")
+     * @Assert\Email(message="L'adresse email doit être valide.")
      */
     private $email;
 
@@ -55,6 +70,7 @@ class Customer
     private $company;
 
     /**
+     * @ApiSubresource
      * @Groups({"customers_read"})
      * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="customer")
      */

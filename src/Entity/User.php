@@ -8,11 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource()
+ * @UniqueEntity("email", message="Cette adresse email est déja utilisée.")
  */
 class User implements UserInterface
 {
@@ -25,21 +28,25 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Groups({"customers_read", "invoices_read"})
+     * @Groups({"customers_read", "invoices_read", "invoices_subresource"})
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="L'adresse email est obligatoire.")
+     * @Assert\Email(message="L'adresse email doit être valide.")
      */
     private $email;
 
     
     /**
-     * @Groups({"customers_read", "invoices_read"})
+     * @Groups({"customers_read", "invoices_read", "invoices_subresource"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le prénom est obligatoire.")
      */
     private $firstName;
     
     /**
-     * @Groups({"customers_read", "invoices_read"})
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le nom est obligatoire.")
+     * @Groups({"customers_read", "invoices_read", "invoices_subresource"})
      */
     private $lastName;
 
@@ -51,6 +58,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Le mot de passe est obligatoire.")
      */
     private $password;
 
