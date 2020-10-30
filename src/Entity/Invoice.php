@@ -85,6 +85,11 @@ class Invoice
      */
     private $customer;
 
+    public function __construct()
+    {
+        $this->setSentAt(new \DateTime);
+    }
+
     /**
      * @Groups({"invoices_read", "invoices_subresource"})
      */
