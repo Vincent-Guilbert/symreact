@@ -26,7 +26,7 @@ const InvoicesPage = (props) => {
             i.amount.toString().startsWith(search) ||
             statusLabels[i.status].toLowerCase().includes(search.toLowerCase())
     );
-    const itemsPerPage = 20;
+    const itemsPerPage = 10;
     const paginatedInvoices = Pagination.getPaginatedItems(filteredInvoices, currentPage, itemsPerPage);
     const formatDate = (string) => moment(string).format('DD/MM/YYYY');
 

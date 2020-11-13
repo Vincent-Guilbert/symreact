@@ -22,5 +22,4 @@ class InvoiceIncrementationController
 
         return $data;
     }
-
 }
