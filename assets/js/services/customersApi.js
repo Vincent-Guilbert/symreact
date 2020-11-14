@@ -6,10 +6,28 @@ function findAll() {
         .then(response => response.data["hydra:member"])
 }
 
+function find(id) {
+    return axios
+        .get('http://localhost:8000/api/customers/' + id)
+        .then(response => response.data);
+}
+
 function deleteCustomer(id) {
     return axios.delete('http://localhost:8000/api/customers/' + id);
 }
+
+function createCustomer(customer) {
+    return axios.post("http://localhost:8000/api/customers" , customer);
+}
+
+function updateCustomer(id, customer) {
+    return axios.put("http://localhost:8000/api/customers/" + id, customer);
+}
+
 export default {
     findAll,
-    delete : deleteCustomer
+    find,
+    delete : deleteCustomer,
+    create : createCustomer,
+    update: updateCustomer
 }

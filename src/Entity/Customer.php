@@ -39,7 +39,8 @@ class Customer
      * @Assert\NotBlank(message="Le prénom est obligatoire.")
      * @Assert\Length(
      *  min=2, minMessage="Le prénom doit faire entre 2 et 50 caractères.",
-     *  max=50, maxMessage="Le prénom doit faire entre 2 et 50 caractères."
+     *  max=50, maxMessage="Le prénom doit faire entre 2 et 50 caractères.",
+     *  allowEmptyString = true
      * )
      */
     private $firstName;
@@ -50,7 +51,8 @@ class Customer
      * @Assert\NotBlank(message="Le nom est obligatoire.")
      * @Assert\Length(
      *  min=2, minMessage="Le nom doit faire entre 2 et 50 caractères.",
-     *  max=50, maxMessage="Le nom doit faire entre 2 et 50 caractères."
+     *  max=50, maxMessage="Le nom doit faire entre 2 et 50 caractères.",
+     *  allowEmptyString = true
      * )
      */
     private $lastName;

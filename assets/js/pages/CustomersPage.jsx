@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Pagination from '../components/Pagination';
 import customersApi from '../services/customersApi';
 
@@ -46,13 +47,16 @@ const CustomersPage = () => {
 
     return (
         <>
-            <h1 className="mb-5">Liste des clients</h1>
-
-            <div className="form-group ">
-                <input onChange={handleSearch} value={search} type="text" className="form-control w-75 m-auto" placeholder="Rechercher..."/>
+            <div className="d-flex justify-content-between align-items-center mb-5">
+                <h1>Liste des clients</h1>
+                <Link to="/customers/new" className="btn btn-success">Créer un client</Link>
             </div>
 
-            <table className="table table-hover w-75 m-auto">
+            <div className="form-group ">
+                <input onChange={handleSearch} value={search} type="text" className="form-control" placeholder="Rechercher..."/>
+            </div>
+
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th>Id</th>

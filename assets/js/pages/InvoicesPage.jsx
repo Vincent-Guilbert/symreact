@@ -2,6 +2,7 @@ import invoicesApi from '../services/invoicesApi';
 import React, { useEffect, useState } from 'react';
 import Pagination from '../components/Pagination';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const InvoicesPage = (props) => {
 
@@ -57,13 +58,16 @@ const InvoicesPage = (props) => {
 
     return ( 
         <>
-            <h1 className="mb-5">Liste des factures</h1>
-
-            <div className="form-group ">
-                <input onChange={handleSearch} value={search} type="text" className="form-control w-75 m-auto" placeholder="Rechercher..."/>
+            <div className="d-flex justify-content-between align-items-center">
+                <h1>Liste des factures</h1>
+                <Link to="/invoices/new" className ="btn btn-success">Nouvelle facture</Link>
             </div>
 
-            <table className="table table-hover w-75 m-auto">
+            <div className="form-group ">
+                <input onChange={handleSearch} value={search} type="text" className="form-control" placeholder="Rechercher..."/>
+            </div>
+
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th className="text-center">Numéro</th>
@@ -83,6 +87,12 @@ const InvoicesPage = (props) => {
                             <td><span className={"badge badge-" + statusClasses[invoice.status]}>{statusLabels[invoice.status]}</span></td>
                             <td className="text-center">{invoice.amount}</td>
                             <td>
+                                <Link
+                                    to={"/invoices/" + invoice.id}
+                                    className="btn btn-sm btn-success mr-2"
+                                >
+                                    Editer
+                                </Link>
                                 <button 
                                     className="btn btn-sm btn-danger"
                                     onClick={() => handleDelete(invoice.id)}

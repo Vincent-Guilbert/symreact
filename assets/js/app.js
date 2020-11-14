@@ -10,6 +10,8 @@ import CustomersPage from './pages/CustomersPage';
 import HomePage from './pages/HomePage';
 import InvoicesPage from './pages/InvoicesPage';
 import LoginPage from './pages/LoginPage';
+import CustomerPage from './pages/CustomerPage';
+import InvoicePage from './pages/InvoicePage';
 
 
 const App = () => {
@@ -17,7 +19,7 @@ const App = () => {
     const NavbarWithRouter = withRouter(Navbar);
 
     const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth') || false);
-        
+
     const authContext = {
         isAuth,
         setIsAuth
@@ -27,9 +29,11 @@ const App = () => {
         <AuthContext.Provider value={authContext}>
             <HashRouter>
                 <NavbarWithRouter/>
-                <main className="pt-5">
+                <main className="pt-5 w-75 m-auto">
                     <Switch>
+                        <PrivateRoute path="/customers/:id" component={CustomerPage}/>
                         <PrivateRoute path="/customers" component={CustomersPage}/>
+                        <PrivateRoute path="/invoices/:id" component={InvoicePage}/>
                         <PrivateRoute path="/invoices" component={InvoicesPage}/>
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/" component={HomePage}/>
