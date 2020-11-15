@@ -90,7 +90,9 @@ const InvoicePage = ({history, match}) => {
 
     return ( 
         <>
-            {!editing ? <h1 className="mb-5">Créer une facture</h1> : <h1 className="mb-5">Modifier la facture</h1> }
+            <h1 className="mb-5">
+                {editing ? "Modifier une facture" : "Créer une facture"}
+            </h1>
 
             <form onSubmit={handleSubmit}>
                 <Field

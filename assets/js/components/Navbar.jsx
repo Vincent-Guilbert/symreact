@@ -38,7 +38,7 @@ const Navbar = ({history}) => {
                     {!isAuth ? (
                         <>
                             <li className="nav-item">
-                                <NavLink to=" " className="nav-link">Inscripition</NavLink>
+                                <NavLink to="/register" className="nav-link">Inscripition</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/login" className="btn btn-success">Connexion</NavLink>

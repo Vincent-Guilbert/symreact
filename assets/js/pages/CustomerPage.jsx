@@ -68,7 +68,9 @@ const customerPage = ({history, match}) => {
 
     return ( 
         <>
-            { !editing ? <h1 className="mb-5">Création d'un client</h1> : <h1 className="mb-5">Modification d'un client</h1> }
+            <h1 className="mb-5">
+                {editing ? "Modification d'un client" : "Création d'un client"}
+            </h1>
 
             <form onSubmit={handleSubmit}>
                 <Field

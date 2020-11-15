@@ -12,6 +12,7 @@ import InvoicesPage from './pages/InvoicesPage';
 import LoginPage from './pages/LoginPage';
 import CustomerPage from './pages/CustomerPage';
 import InvoicePage from './pages/InvoicePage';
+import RegisterPage from './pages/RegisterPage';
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
                         <PrivateRoute path="/customers" component={CustomersPage}/>
                         <PrivateRoute path="/invoices/:id" component={InvoicePage}/>
                         <PrivateRoute path="/invoices" component={InvoicesPage}/>
+                        <Route path="/register" component={RegisterPage}/>
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/" component={HomePage}/>
                     </Switch>
